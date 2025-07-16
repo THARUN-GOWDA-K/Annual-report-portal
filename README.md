@@ -1,1 +1,4 @@
-# Annual-report-portal
+# Integrated Annual Report Portal for Academic Departments
+- a web-based application designed to streamline the management and generation of annual reports for educational institutions.The platform centralizes data collection, visualization, and reporting processes,ensuring consistency, efficiency, and ease of access.
+   Built using Python-Flask for the backend and MongoDB for the database, it offers a scalable and robust solution to handle dynamic data.
+- Key features include user-friendly interfaces, automated data aggregation, and customizable report templates, enabling academic departments to input and manage their data efficiently. The portal also supports role-based access control, ensuring secure and structured data management. With real-time data analytics and visualization tools, stakeholders can gain insights into departmental performance and achievements.
