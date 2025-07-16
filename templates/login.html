@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <style>
+        body {
+            background-image: url('https://image.lexica.art/full_jpg/ebd053f7-e84e-4c5e-9e4c-8030840531b6');
+            background-color: #e9ecef; /* Light gray background */
+            background-size: cover;
+            color: #495057; /* Darker text for better readability */
+            font-family: 'Arial', sans-serif; /* Clean font */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* Remove default margin */
+        }
+        .login-container {
+            max-width: 400px;
+            width: 100%; /* Full width for smaller screens */
+            padding: 40px;
+            background-color: #ffffff; /* White background for the login form */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Softer shadow */
+            transition: transform 0.3s; /* Smooth transform */
+        }
+        .login-container:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff; /* Soft blue heading */
+            font-weight: 600; /* Semi-bold heading */
+            font-size: 24px; /* Increased font size for prominence */
+        }
+        label {
+            font-weight: 600; /* Semi-bold labels */
+            color: #007bff; /* Soft blue labels */
+            margin-bottom: 5px; /* Space between label and input */
+        }
+        input[type="email"], input[type="password"], select {
+            border-radius: 8px;
+            border: 1px solid #ced4da; /* Light border */
+            padding: 12px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s; /* Smooth transition */
+            width: 100%; /* Full width for inputs */
+        }
+        input[type="email"]:focus, input[type="password"]:focus, select:focus {
+            border-color: #007bff; /* Change border color on focus */
+            outline: none; /* Remove outline */
+        }
+        button {
+            background-color: #007bff; /* Button color */
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 16px;
+            color: white; /* White text on button */
+            transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px); /* Lift effect on hover */
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+        .footer-links a {
+            color: #007bff; /* Link color */
+            text-decoration: none; /* Remove underline */
+            margin: 0 5px; /* Space between links */
+        }
+        .footer-links a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login to Access the Portal</h1>
+        <form method="POST">
+            <label for="role">Role</label>
+            <select id="role" name="role" required>
+                <option value="">Select Role</option>
+                <option value="student">Student</option>
+                <option value="faculty">Faculty</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Enter your password">
+
+            <button type="submit">Login</button>
+        </form>
+        <footer>
+            <div class="footer-links">
+                <a href="#">Forgot Password?</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

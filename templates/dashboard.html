@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            padding: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        th, td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .btn {
+            margin: 5px;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 40vh;
+            width: 80vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Welcome to the Annual Report Dashboard</h1>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Department</th>
+                    <th>Students</th>
+                    <th>Faculty</th>
+                    <th>Publications</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for department in departments %}
+                <tr>
+                    <td>{{ department.department }}</td>
+                    <td>{{ department.students }}</td>
+                    <td>{{ department.faculty }}</td>
+                    <td>{{ department.publications }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="my-4 text-center">
+            <a href="{{ url_for('generate_report') }}" class="btn btn-primary">Generate Annual Report</a>
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+        </div>
+
+        <form method="POST" action="{{ url_for('generate_report') }}" class="my-4">
+            <div class="form-group">
+                <input type="text" name="year" class="form-control" placeholder="Enter Year" required>
+            </div>
+            <div class="form-group">
+                <select name="file_type" class="form-control" required>
+                    <option value="PDF">PDF</option>
+                    <option value="CSV">CSV</option>
+                    <option value="GRAPH">Graph</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Generate Report</button>
+        </form>
+
+        <div class="chart-container">
+            <canvas id="departmentChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('departmentChart').getContext('2d');
+        const departmentChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Department A', 'Department B', 'Department C'],
+                datasets: [{
+                    label: 'Publications',
+                    data: [12, 19, 3],
+                    backgroundColor: 'rgba(106, 17, 203, 0.6)',
+                    borderColor: 'rgba(106, 17, 203, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Publications'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Departments'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

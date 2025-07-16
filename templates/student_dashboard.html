@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            padding: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        th, td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .btn-danger {
+            float: right;
+            margin-top: 20px;
+        }
+        .download-options {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .progress-report {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-user-graduate"></i> Welcome, Student</h1>
+        
+        <div class="progress-report">
+            <h2>Year-wise Progress Report</h2>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>GPA</th>
+                        <th>Credits Earned</th>
+                        <th>Remarks</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for report in progress_reports %}
+                    <tr>
+                        <td>{{ report.year }}</td>
+                        <td>{{ report.gpa }}</td>
+                        <td>{{ report.credits }}</td>
+                        <td>{{ report.remarks }}</td>
+                        <td>
+                            <a href="{{ url_for('download_progress_report', student_id=report.student_id, year=report.year) }}" class="btn btn-info btn-sm">Download</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Department</th>
+                    <th>Students</th>
+                    <th>Faculty</th>
+                    <th>Publications</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for department in departments %}
+                <tr>
+                    <td>{{ department.department }}</td>
+                    <td>{{ department.students }}</td>
+                    <td>{{ department.faculty }}</td>
+                    <td>{{ department.publications }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('logout') }}" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
